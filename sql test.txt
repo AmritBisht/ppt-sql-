@@ -1,0 +1,65 @@
+1. Write an SQL query to retrieve the names and email addresses of all employees from a table named "Employees".
+
+Ans: select name ,email from employees ;
+
+
+
+2. Write an SQL query to filter records from a table named "Customers" where the "City" column is 'New York'.
+
+Ans: select * from Customers where city = 'New York' ;
+
+
+
+
+3. Write an SQL query to sort records in descending order based on the "DateOfBirth" column in a table named "Users".
+
+Ans: select * from Users order by DateOfBirth desc ;
+
+
+
+
+4. Write an SQL query to sort records in ascending order based on the "RegistrationDate" column in a table named "Users".
+
+Ans: select * from Users order by RegistrationDate asc
+
+
+
+
+
+5. Write an SQL query to find the employee with the highest salary from a table named "Employees" and display their name, position, and salary.
+
+Ans: with cte as ( select * , rank() over (order by salary) as rn from Employees )
+ 
+     select name ,position , salary from cte where rn = 1
+
+
+
+
+
+6. Write an SQL query to retrieve records from a table named "Customers" where the "Phone" column matches the pattern '+1-XXX-XXX-XXXX'.
+
+Ans: select * from Customers where Phone LIKE '+1-___-___-____' ;
+
+
+
+
+
+7. Write an SQL query to retrieve the top 5 customers with the highest total purchase amount from a table named "Orders" and display their names and total purchase amounts.
+
+Ans: select name , sum(amount) as total_purchase from Orders group by name order by total_purchase desc limit 5;
+
+
+
+
+
+8. Write an SQL query to calculate the percentage of sales for each product category in a table named "Sales" and display the category name, total sales amount, and the percentage of total sales.
+
+Ans: select category , sum(amount) as total_sales_amount , (total_sales_amount/(select sum(amount) from sales) * 100) as percentage of total sales from Sales group by catergory ;
+
+
+
+
+
+9. Write an SQL query to find the customers who have made the highest total purchases across all years from a table named "Orders" and display their names, email addresses, and the total purchase amount.
+
+Ans: select name , email , sum(amount) as total_purchase_amount from Orders group by name order by 1 desc
